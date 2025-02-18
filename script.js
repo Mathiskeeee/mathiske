@@ -10,7 +10,7 @@ const MAX_PLAYERS = 264; // Maximum spelers op de server
 
 async function updatePlayerCount() {
     try {
-        const response = await fetch(`http://${SERVER_IP}:${SERVER_PORT}/players.json`);
+        const response = await fetch(`http://185.228.82.235:30120/players.json`);
         if (!response.ok) {
             throw new Error("Kan geen verbinding maken met de server.");
         }
