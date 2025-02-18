@@ -10,19 +10,18 @@ const MAX_PLAYERS = 264; // Maximum spelers op de server
 
 async function updatePlayerCount() {
     try {
-        const response = await fetch(`http://185.228.82.235:30120/players.json`);
+        const response = await fetch("https://mathiskeeee.github.io/mathiske/proxy.php");
         if (!response.ok) {
-            throw new Error("Kan geen verbinding maken met de server.");
+            throw new Error("Kan geen verbinding maken met de proxy.");
         }
         const players = await response.json();
-        const currentPlayers = players.length; // Aantal huidige spelers
-        
-        document.getElementById("player-count").textContent = `${currentPlayers}/${MAX_PLAYERS}`;
+        document.getElementById("player-count").textContent = `${players.length}/264`;
     } catch (error) {
         console.error("Fout bij ophalen spelersaantal:", error);
         document.getElementById("player-count").textContent = "Niet beschikbaar";
     }
 }
+
 
 // Roep de functie aan bij het laden van de pagina en ververst elke 30 seconden
 document.addEventListener("DOMContentLoaded", updatePlayerCount);
