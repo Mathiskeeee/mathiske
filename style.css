@@ -6,10 +6,7 @@
     box-sizing: border-box;
   }
   
-  html, body {
-    height: 100%;
-    overflow: hidden; /* Voorkomt scrollen */
-  }
+  
   
   body {
     font-family: Arial, sans-serif;
