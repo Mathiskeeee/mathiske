@@ -34,7 +34,18 @@
     height: 50px; /* Zorgt dat het logo de navbar niet vergroot */
     width: auto;
   }
-  
+
+.player-count {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: 2px solid white;
+    border-radius: 15px; /* Afgeronde hoeken */
+    display: inline-block;
+    margin-bottom: 20px; /* Ruimte tussen tekst en knop */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparante achtergrond */
+}
+
   .nav-links {
     display: flex;
     gap: 20px;
