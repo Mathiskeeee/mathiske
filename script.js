@@ -86,3 +86,4 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(updatePlayerCount, 30000); // Vernieuw elke 30 seconden
 });
 
+document.documentElement.style.scrollBehavior = 'smooth';
