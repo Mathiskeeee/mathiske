@@ -1,3 +1,4 @@
+
 /* Algemene instellingen */
 * {
     margin: 0;
@@ -97,3 +98,17 @@
     background-color: #47d7ff;
   }
   
+  #player-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 25px;
+    font-size: 20px;
+    font-weight: bold;
+    background: rgba(0, 115, 255, 0.9); /* Blauwe kleur zoals de knop */
+    color: white;
+    border-radius: 50px; /* Helemaal rond */
+    margin-bottom: 15px; /* Ruimte tussen deze en de knop */
+    min-width: 180px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
