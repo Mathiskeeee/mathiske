@@ -20,7 +20,7 @@ async function updatePlayerCount() {
         playerCountElement.innerHTML = `<b>Spelers: ${currentPlayers}/${MAX_PLAYERS}</b>`;
     } catch (error) {
         console.error("Fout bij ophalen spelersaantal:", error);
-        playerCountElement.innerHTML = `<b>Spelers: Niet Beschikbaar</b>`;
+        playerCountElement.innerHTML = `<b>Spelers: 0/264</b>`;
     }
 }
 
