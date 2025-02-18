@@ -112,3 +112,23 @@
     min-width: 180px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
+
+.player-change {
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 10px;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.player-change.up {
+    color: #2ecc71; /* Groen voor +X */
+}
+
+.player-change.down {
+    color: #e74c3c; /* Rood voor -X */
+}
+
+#player-count {
+    transition: opacity 0.3s ease-in-out;
+}
+
