@@ -10,7 +10,7 @@ async function updatePlayerCount() {
     const playerCountElement = document.getElementById("player-count");
 
     try {
-        const response = await fetch(`https://servers-frontend.fivem.net/api/servers/single/${SERVER_ID}`);
+        const response = await fetch(`https://servers-frontend.fivem.net/api/servers/single/7zdmob`);
         if (!response.ok) throw new Error(`Server reageerde met status: ${response.status}`);
 
         const data = await response.json();
