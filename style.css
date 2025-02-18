@@ -1,24 +1,26 @@
-
 /* Algemene instellingen */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  
-  
-  
-  body {
+}
+
+body {
     font-family: Arial, sans-serif;
-    background-image: url('images/achtergrond.png'); /* Achtergrondafbeelding */
+    background-image: url('images/achtergrond.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     color: white;
-  }
+}
+
+/* Voeg de smooth scroll hier toe */
+html {
+    scroll-behavior: smooth; /* Zorgt voor vloeiend scrollen door de hele site */
+}
   
-  /* Navbar Styling */
-  .navbar {
+/* Navbar Styling */
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,12 +28,12 @@
     background-color: rgba(0, 0, 0, 0.7); /* Semi-transparant zwart */
     color: white;
     height: 60px; /* Vaste hoogte */
-  }
+}
   
-  .navbar .logo img {
+.navbar .logo img {
     height: 50px; /* Zorgt dat het logo de navbar niet vergroot */
     width: auto;
-  }
+}
 
 .player-count {
     font-size: 20px;
@@ -44,44 +46,44 @@
     background-color: rgba(0, 0, 0, 0.5); /* Semi-transparante achtergrond */
 }
 
-  .nav-links {
+.nav-links {
     display: flex;
     gap: 20px;
-  }
+}
   
-  .nav-links a {
+.nav-links a {
     color: white;
     text-decoration: none;
     padding: 10px;
     font-size: 18px;
-  }
+}
   
-  .nav-links a:hover {
+.nav-links a:hover {
     background-color: #575757;
     border-radius: 5px;
-  }
+}
   
-  /* Hero Section */
-  .hero {
+/* Hero Section */
+.hero {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     text-align: center;
-  }
+}
   
-  .hero h2 {
+.hero h2 {
     font-size: 48px;
     margin-bottom: 20px;
-  }
+}
   
-  .hero p {
+.hero p {
     font-size: 24px;
     margin-bottom: 30px;
-  }
+}
   
-  .hero button {
+.hero button {
     padding: 15px 30px;
     font-size: 18px;
     background-color: #0073ff;
@@ -89,13 +91,13 @@
     border: none;
     cursor: pointer;
     border-radius: 25px; /* Ronde hoeken */
-  }
+}
   
-  .hero button:hover {
+.hero button:hover {
     background-color: #47d7ff;
-  }
+}
   
-  #player-box {
+#player-box {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -129,14 +131,36 @@
     transition: opacity 0.3s ease-in-out;
 }
 
+/* Discord Leden sectie */
 #discord-section {
     background-color: rgba(0, 0, 0, 0.7);
     color: white;
     padding: 20px;
     border-radius: 15px;
     width: 350px;
-    overflow-y: auto;
     max-height: 500px;
+    overflow: hidden; /* Verbergt de scrollbar in de sectie */
+    margin: 20px auto 0; /* Ruimte boven de sectie verminderen */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Zorgt ervoor dat de ledenlijst helemaal bovenaan staat */
+}
+
+/* Discord Ledenlijst */
+#discord-members {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 400px;
+    overflow-y: scroll; /* Zorgt voor scrollen als de lijst te lang is */
+    margin-top: 0; /* Verwijder de marge bovenaan */
+    scroll-behavior: smooth; /* Zorgt voor vloeiend scrollen */
+}
+
+
+/* Verberg de scrollbar volledig */
+#discord-members::-webkit-scrollbar {
+    display: none; /* Verbergt de scrollbar in Webkit browsers (zoals Chrome) */
 }
 
 #discord-members li {
@@ -145,4 +169,3 @@
     gap: 10px;
     padding: 5px;
 }
-
