@@ -50,6 +50,36 @@ async function updatePlayerCount() {
     }
 }
 
+const DISCORD_SERVER_ID = "1333935685840797786";
+
+async function fetchDiscordMembers() {
+    try {
+        const response = await fetch(`https://discord.com/api/guilds/${DISCORD_SERVER_ID}/widget.json`);
+        if (!response.ok) throw new Error("Kan geen verbinding maken met Discord.");
+
+        const data = await response.json();
+        const membersList = document.getElementById("discord-members");
+
+        membersList.innerHTML = ""; // Maak lijst leeg voor update
+
+        data.members.forEach(member => {
+            const memberItem = document.createElement("li");
+            memberItem.innerHTML = `<img src="${member.avatar_url}" alt="${member.username}" width="25"> ${member.username}`;
+            membersList.appendChild(memberItem);
+        });
+    } catch (error) {
+        console.error("Fout bij ophalen Discord leden:", error);
+        document.getElementById("discord-members").innerHTML = "Kan ledenlijst niet ophalen.";
+    }
+}
+
+// ✅ Update elke 30 seconden
+document.addEventListener("DOMContentLoaded", () => {
+    fetchDiscordMembers();
+    setInterval(fetchDiscordMembers, 30000);
+});
+
+
 // ✅ Start direct na het laden van de pagina en update elke 30 seconden
 document.addEventListener("DOMContentLoaded", () => {
     updatePlayerCount(); // Directe eerste update
