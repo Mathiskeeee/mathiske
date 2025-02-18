@@ -4,12 +4,24 @@ function joinNow() {
 }
 
 // Simulatie van het ophalen van het aantal spelers (Vervang dit met een echte API-call indien mogelijk)
-function updatePlayerCount() {
-    // Hier zou je een echte API-call kunnen maken naar je FiveM-server om het actuele spelersaantal op te halen.
-    let maxPlayers = 264;
-    let currentPlayers = Math.floor(Math.random() * maxPlayers); // Simulatie: willekeurig getal tussen 0 en max
+const SERVER_IP = "185.228.82.235"; // Vervang dit met je server IP
+const SERVER_PORT = "30120"; // Vervang dit met je serverpoort
+const MAX_PLAYERS = 264; // Maximum spelers op de server
 
-    document.getElementById("player-count").textContent = `${currentPlayers}/${maxPlayers}`;
+async function updatePlayerCount() {
+    try {
+        const response = await fetch(`http://${SERVER_IP}:${SERVER_PORT}/players.json`);
+        if (!response.ok) {
+            throw new Error("Kan geen verbinding maken met de server.");
+        }
+        const players = await response.json();
+        const currentPlayers = players.length; // Aantal huidige spelers
+        
+        document.getElementById("player-count").textContent = `${currentPlayers}/${MAX_PLAYERS}`;
+    } catch (error) {
+        console.error("Fout bij ophalen spelersaantal:", error);
+        document.getElementById("player-count").textContent = "Niet beschikbaar";
+    }
 }
 
 // Roep de functie aan bij het laden van de pagina en ververst elke 30 seconden
