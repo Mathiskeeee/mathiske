@@ -5,7 +5,7 @@ function joinNow() {
 
 // Simulatie van het ophalen van het aantal spelers (Vervang dit met een echte API-call indien mogelijk)
 const SERVER_IP = "185.228.82.235"; // Vervang dit met je server IP
-const SERVER_PORT = "30120"; // Vervang dit met je serverpoort
+const SERVER_PORT = "40120"; // Vervang dit met je serverpoort
 const MAX_PLAYERS = 264; // Maximum spelers op de server
 
 async function updatePlayerCount() {
