@@ -1,0 +1,88 @@
+/* Algemene instellingen */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    height: 100%;
+    overflow: hidden; /* Voorkomt scrollen */
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-image: url('images/achtergrond.png'); /* Achtergrondafbeelding */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+  }
+  
+  /* Navbar Styling */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparant zwart */
+    color: white;
+    height: 60px; /* Vaste hoogte */
+  }
+  
+  .navbar .logo img {
+    height: 50px; /* Zorgt dat het logo de navbar niet vergroot */
+    width: auto;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    font-size: 18px;
+  }
+  
+  .nav-links a:hover {
+    background-color: #575757;
+    border-radius: 5px;
+  }
+  
+  /* Hero Section */
+  .hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .hero h2 {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+  
+  .hero p {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+  
+  .hero button {
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #0073ff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 25px; /* Ronde hoeken */
+  }
+  
+  .hero button:hover {
+    background-color: #47d7ff;
+  }
+  
