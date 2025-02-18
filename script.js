@@ -10,20 +10,29 @@ async function updatePlayerCount() {
     const playerCountElement = document.getElementById("player-count");
 
     try {
-        const response = await fetch(`https://servers-frontend.fivem.net/api/servers/single/7zdmob`);
+        const response = await fetch(`https://servers-frontend.fivem.net/api/servers/single/${SERVER_ID}`);
         if (!response.ok) throw new Error(`Server reageerde met status: ${response.status}`);
 
         const data = await response.json();
         const currentPlayers = data.Data.players.length;
 
-        // Update de tekst
-        playerCountElement.innerHTML = `<b>Spelers: ${currentPlayers}/${MAX_PLAYERS}</b>`;
+        // Controleer of het aantal spelers is veranderd voordat je de tekst bijwerkt
+        if (playerCountElement.textContent !== `Spelers: ${currentPlayers}/${MAX_PLAYERS}`) {
+            playerCountElement.style.opacity = 0; // Fade-out effect
+            setTimeout(() => {
+                playerCountElement.innerHTML = `<b>Spelers: ${currentPlayers}/${MAX_PLAYERS}</b>`;
+                playerCountElement.style.opacity = 1; // Fade-in effect
+            }, 300);
+        }
     } catch (error) {
         console.error("Fout bij ophalen spelersaantal:", error);
-        playerCountElement.innerHTML = `<b>Spelers: 0/264</b>`;
+        playerCountElement.innerHTML = `<b>Spelers: Niet Beschikbaar</b>`;
     }
 }
 
-// Roep de functie aan bij het laden en update elke 30 sec
-document.addEventListener("DOMContentLoaded", updatePlayerCount);
-setInterval(updatePlayerCount, 30000);
+// ✅ Start direct na het laden van de pagina en update elke 30 seconden
+document.addEventListener("DOMContentLoaded", () => {
+    updatePlayerCount(); // Directe eerste update
+    setInterval(updatePlayerCount, 30000); // Vernieuw elke 30 seconden
+});
+
