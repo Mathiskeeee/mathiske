@@ -5,6 +5,7 @@ function joinNow() {
 
 const SERVER_ID = "7zdmob"; // Je FiveM Server ID
 const MAX_PLAYERS = 264; // Max aantal spelers
+let lastPlayerCount = null; // Bewaart het vorige aantal spelers
 
 async function updatePlayerCount() {
     const playerCountElement = document.getElementById("player-count");
@@ -15,15 +16,34 @@ async function updatePlayerCount() {
 
         const data = await response.json();
         const currentPlayers = data.Data.players.length;
+        let differenceText = ""; // Variabele voor +X / -X
 
-        // Controleer of het aantal spelers is veranderd voordat je de tekst bijwerkt
-        if (playerCountElement.textContent !== `Spelers: ${currentPlayers}/${MAX_PLAYERS}`) {
+        if (lastPlayerCount !== null) {
+            let difference = currentPlayers - lastPlayerCount;
+            if (difference > 0) {
+                differenceText = ` <span class="player-change up">+${difference}</span>`;
+            } else if (difference < 0) {
+                differenceText = ` <span class="player-change down">${difference}</span>`;
+            }
+        }
+
+        // Update de tekst alleen als het veranderd is
+        if (playerCountElement.innerHTML !== `<b>Spelers: ${currentPlayers}/${MAX_PLAYERS}${differenceText}</b>`) {
             playerCountElement.style.opacity = 0; // Fade-out effect
             setTimeout(() => {
-                playerCountElement.innerHTML = `<b>Spelers: ${currentPlayers}/${MAX_PLAYERS}</b>`;
+                playerCountElement.innerHTML = `<b>Spelers: ${currentPlayers}/${MAX_PLAYERS}${differenceText}</b>`;
                 playerCountElement.style.opacity = 1; // Fade-in effect
+
+                // Laat +X / -X na 5 sec verdwijnen
+                if (differenceText !== "") {
+                    setTimeout(() => {
+                        playerCountElement.innerHTML = `<b>Spelers: ${currentPlayers}/${MAX_PLAYERS}</b>`;
+                    }, 5000);
+                }
             }, 300);
         }
+
+        lastPlayerCount = currentPlayers; // Bewaar het huidige aantal spelers
     } catch (error) {
         console.error("Fout bij ophalen spelersaantal:", error);
         playerCountElement.innerHTML = `<b>Spelers: Niet Beschikbaar</b>`;
