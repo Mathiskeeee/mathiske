@@ -3,26 +3,27 @@ function joinNow() {
     window.open("https://servers.fivem.net/servers/detail/7zdmob", "_blank"); // Opent Discord in nieuw tabblad
 }
 
-// Simulatie van het ophalen van het aantal spelers (Vervang dit met een echte API-call indien mogelijk)
-const SERVER_IP = "185.228.82.235"; // Vervang dit met je server IP
-const SERVER_PORT = "30120"; // Vervang dit met je serverpoort
-const MAX_PLAYERS = 264; // Maximum spelers op de server
+const SERVER_ID = "7zdmob"; // Je FiveM Server ID
+const MAX_PLAYERS = 264; // Max aantal spelers
 
 async function updatePlayerCount() {
+    const playerCountElement = document.getElementById("player-count");
+
     try {
-        const response = await fetch("https://mathiskeeee.github.io/mathiske/proxy.php");
-        if (!response.ok) {
-            throw new Error("Kan geen verbinding maken met de proxy.");
-        }
-        const players = await response.json();
-        document.getElementById("player-count").textContent = `${players.length}/264`;
+        const response = await fetch(`https://servers-frontend.fivem.net/api/servers/single/${SERVER_ID}`);
+        if (!response.ok) throw new Error(`Server reageerde met status: ${response.status}`);
+
+        const data = await response.json();
+        const currentPlayers = data.Data.players.length;
+
+        // Update de tekst
+        playerCountElement.innerHTML = `<b>Spelers: ${currentPlayers}/${MAX_PLAYERS}</b>`;
     } catch (error) {
         console.error("Fout bij ophalen spelersaantal:", error);
-        document.getElementById("player-count").textContent = "Niet beschikbaar";
+        playerCountElement.innerHTML = `<b>Spelers: Niet Beschikbaar</b>`;
     }
 }
 
-
-// Roep de functie aan bij het laden van de pagina en ververst elke 30 seconden
+// Roep de functie aan bij het laden en update elke 30 sec
 document.addEventListener("DOMContentLoaded", updatePlayerCount);
-setInterval(updatePlayerCount, 30000); // Vernieuw elke 30 seconden
+setInterval(updatePlayerCount, 30000);
